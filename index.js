@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 const API_URL = "https://secrets-api.appbrewery.com/";
 
-//TODO 1: Fill in your values for the 3 types of auth.
+//TODO 1: Preencha seus valores para os 3 tipos de autenticação
 const yourUsername = "joao";
 const yourPassword = "12345";
 const yourAPIKey = "7d69f14d-e646-4e5a-b0cd-89b0c9508c1d";
@@ -16,41 +16,41 @@ app.get("/", (req, res) => {
 });
 
 app.get("/noAuth", (req, res) => {
-  //TODO 2: Use axios to hit up the /random endpoint
-  //The data you get back should be sent to the ejs file as "content"
-  //Hint: make sure you use JSON.stringify to turn the JS object from axios into a string.
+  //TODO 2: Use axios para atingir o endpoint /random
+  //Os dados que você recebe devem ser enviados para o arquivo ejs como "conteúdo"
+  //Dica: certifique-se de usar JSON.stringify para transformar o objeto JS de axios em uma string.
 });
 
 app.get("/basicAuth", (req, res) => {
-  //TODO 3: Write your code here to hit up the /all endpoint
-  //Specify that you only want the secrets from page 2
-  //HINT: This is how you can use axios to do basic auth:
+  //TODO 3: Escreva seu código aqui para acessar o endpoint /all
+  //Especifique que você deseja apenas os segredos da página 2
+  //DICA: É assim que você pode usar axios para fazer autenticação básica:
   // https://stackoverflow.com/a/74632908
   /*
    axios.get(URL, {
-      auth: {
-        username: "abc",
-        password: "123",
+      autenticação: {
+        nome de usuário: "abc",
+        senha: "123",
       },
     });
   */
 });
 
 app.get("/apiKey", (req, res) => {
-  //TODO 4: Write your code here to hit up the /filter endpoint
-  //Filter for all secrets with an embarassment score of 5 or greater
-  //HINT: You need to provide a query parameter of apiKey in the request.
+  //TODO 4: Escreva seu código aqui para acessar o endpoint /filter
+  //Filtrar todos os segredos com pontuação de constrangimento igual ou superior a 5
+  //DICA: Você precisa fornecer um parâmetro de consulta apiKey na solicitação.
 });
 
 app.get("/bearerToken", (req, res) => {
-  //TODO 5: Write your code here to hit up the /secrets/{id} endpoint
-  //and get the secret with id of 42
-  //HINT: This is how you can use axios to do bearer token auth:
+//TODO 5: Escreva seu código aqui para acessar o endpoint /secrets/{id}
+  //e pega o segredo com id 42
+  //DICA: É assim que você pode usar axios para fazer autenticação de token de portador:
   // https://stackoverflow.com/a/52645402
   /*
   axios.get(URL, {
-    headers: { 
-      Authorization: `Bearer <YOUR TOKEN HERE>` 
+    cabeçalhos: { 
+      Autorização: `Bearer <SEU TOKEN AQUI>` 
     },
   });
   */
