@@ -15,10 +15,19 @@ app.get("/", (req, res) => {
   res.render("index.ejs", { content: "API Response." });
 });
 
-app.get("/noAuth", (req, res) => {
+app.get("/noAuth", async (req, res) => {
   //TODO 2: Use axios para atingir o endpoint /random
   //Os dados que você recebe devem ser enviados para o arquivo ejs como "conteúdo"
   //Dica: certifique-se de usar JSON.stringify para transformar o objeto JS de axios em uma string.
+  try {
+    const response = await axios.get(API_URL +"random");
+    const result = response.data;
+    const string = JSON.stringify(result);
+    //console.log(string)
+    res.render("index.ejs", { content: string });
+  } catch (error) {
+    console.error("Failed to make request:", error.message);
+  }
 });
 
 app.get("/basicAuth", (req, res) => {
@@ -43,7 +52,7 @@ app.get("/apiKey", (req, res) => {
 });
 
 app.get("/bearerToken", (req, res) => {
-//TODO 5: Escreva seu código aqui para acessar o endpoint /secrets/{id}
+  //TODO 5: Escreva seu código aqui para acessar o endpoint /secrets/{id}
   //e pega o segredo com id 42
   //DICA: É assim que você pode usar axios para fazer autenticação de token de portador:
   // https://stackoverflow.com/a/52645402
