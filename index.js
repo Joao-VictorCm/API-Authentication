@@ -20,11 +20,9 @@ app.get("/noAuth", async (req, res) => {
   //Os dados que você recebe devem ser enviados para o arquivo ejs como "conteúdo"
   //Dica: certifique-se de usar JSON.stringify para transformar o objeto JS de axios em uma string.
   try {
-    const response = await axios.get(API_URL + "random");
-    const result = response.data;
-    const string = JSON.stringify(result);
+    const result = await axios.get(API_URL + "random");
     //console.log(string)
-    res.render("index.ejs", { content: string });
+    res.render("index.ejs", { content: JSON.stringify(result.data) });
   } catch (error) {
     console.error("Failed to make request:", error.message);
   }
@@ -43,18 +41,13 @@ app.get("/basicAuth",  async (req, res) => {
       },
     });
   */
-const response = await axios.get(API_URL, {
+const result = await axios.get(API_URL+"all?page=2", {
   auth:{
     username: yourUsername,
     password: yourPassword
   }
 })
-
-const result = response.data
-console.log(result)
-
-res.render("index.ejs")
-
+res.render("index.ejs", { content: JSON.stringify(result.data)})
 
 });
 
