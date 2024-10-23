@@ -54,11 +54,21 @@ app.get("/apiKey", async (req, res) => {
   //TODO 4: Escreva seu código aqui para acessar o endpoint /filter
   //Filtrar todos os segredos com pontuação de constrangimento igual ou superior a 5
   //DICA: Você precisa fornecer um parâmetro de consulta apiKey na solicitação.
-  const result = await axios.get(API_URL+"filter?score=5&apiKey="+yourAPIKey)
+  const result = await axios.get(API_URL+"filter",{
+    params:{
+      score: 5,
+      apiKey: yourAPIKey
+    }
+  })
   res.render("index.ejs", { content: JSON.stringify(result.data)})
 });
 
-app.get("/bearerToken", (req, res) => {
+
+const config = {
+  headers:{Authorization: `Bearer ${yourBearerToken}`}
+ }
+
+app.get("/bearerToken", async (req, res) => {
   //TODO 5: Escreva seu código aqui para acessar o endpoint /secrets/{id}
   //e pega o segredo com id 42
   //DICA: É assim que você pode usar axios para fazer autenticação de token de portador:
@@ -70,6 +80,8 @@ app.get("/bearerToken", (req, res) => {
     },
   });
   */
+ const result = await axios.get(API_URL+"secrets/42", config)
+ res.render("index.ejs", { content: JSON.stringify(result.data)})
 });
 
 app.listen(port, () => {
