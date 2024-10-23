@@ -38,6 +38,24 @@ Esta rota faz uma requisição ao endpoint /secrets/{id} da API para obter o seg
 O Bearer Token é inserido no cabeçalho HTTP como Authorization.
 A resposta conterá o segredo associado ao ID 42.
 
+## Como Funciona o Projeto
+Autenticação Básica (Basic Auth): Nome de usuário e senha são passados no cabeçalho da requisição.
+API Key: Um parâmetro apiKey é adicionado à URL da requisição.
+Bearer Token: Um token é inserido no cabeçalho Authorization.
+Fluxo de Trabalho
+O usuário acessa uma das rotas definidas no servidor (/noAuth, /basicAuth, /apiKey, ou /bearerToken).
+O servidor faz uma requisição à API pública, utilizando o método de autenticação necessário.
+Os dados da API são renderizados e exibidos no navegador.
+
+## Variáveis de Autenticação
+No código, você deve substituir as variáveis de autenticação pelos seus próprios valores:
+
+> const yourUsername = "seuUsername";
+> const yourPassword = "suaSenha";
+> const yourAPIKey = "suaAPIKey";
+> const yourBearerToken = "seuBearerToken";
+
+
 
 ## Recursos
 
