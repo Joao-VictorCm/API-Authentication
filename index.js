@@ -21,7 +21,6 @@ app.get("/noAuth", async (req, res) => {
   //Dica: certifique-se de usar JSON.stringify para transformar o objeto JS de axios em uma string.
   try {
     const result = await axios.get(API_URL + "random");
-    //console.log(string)
     res.render("index.ejs", { content: JSON.stringify(result.data) });
   } catch (error) {
     console.error("Failed to make request:", error.message);
@@ -51,10 +50,12 @@ res.render("index.ejs", { content: JSON.stringify(result.data)})
 
 });
 
-app.get("/apiKey", (req, res) => {
+app.get("/apiKey", async (req, res) => {
   //TODO 4: Escreva seu código aqui para acessar o endpoint /filter
   //Filtrar todos os segredos com pontuação de constrangimento igual ou superior a 5
   //DICA: Você precisa fornecer um parâmetro de consulta apiKey na solicitação.
+  const result = await axios.get(API_URL+"filter?score=5&apiKey="+yourAPIKey)
+  res.render("index.ejs", { content: JSON.stringify(result.data)})
 });
 
 app.get("/bearerToken", (req, res) => {
